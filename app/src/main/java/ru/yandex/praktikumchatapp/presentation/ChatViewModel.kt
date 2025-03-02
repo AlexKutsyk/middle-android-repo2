@@ -31,9 +31,6 @@ class ChatViewModel(
     }
 
     fun sendMyMessage(messageText: String) {
-        _messages.update { messageList ->
-            val newListMessage: List<Message> = messageList + Message.MyMessage(messageText)
-            newListMessage
-        }
+        _messages.update { messageList -> messageList + Message.MyMessage(messageText) }
     }
 }

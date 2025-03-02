@@ -37,14 +37,16 @@ class ChatRepositoryTest {
 
     @Test
     fun `getReplyMessage should return a non-empty string`() = runTest {
+        val testValue = "Test"
+
         `when`(chatApi.getReply())
             .thenReturn(
                 flow {
-                    emit("Test")
+                    emit(testValue)
                 }
             )
         chatRepository.getReplyMessage().test {
-            assert(awaitItem() == "Test")
+            assert(awaitItem() == testValue)
             awaitComplete()
         }
     }

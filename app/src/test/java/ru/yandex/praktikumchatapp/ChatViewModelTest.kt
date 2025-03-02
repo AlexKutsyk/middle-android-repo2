@@ -12,6 +12,7 @@ import kotlinx.coroutines.test.setMain
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import ru.yandex.praktikumchatapp.presentation.ChatViewModel
@@ -57,11 +58,11 @@ class ChatViewModelTest {
         jobs.joinAll()
 
         val actualAmount = viewModel.messages.value.size
-        assertThat(actualAmount, equalTo(messagesToSend.size))
+        Assert.assertEquals(actualAmount, messagesToSend.size)
 
         repeat(messagesToSend.size) { index ->
             val actualValue = viewModel.messages.value[index]
-            assertThat(actualValue, equalTo(messagesToSend[index]))
+            Assert.assertEquals(actualValue, messagesToSend[index])
         }
     }
 }

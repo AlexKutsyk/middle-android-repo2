@@ -12,15 +12,13 @@ class ChatRepository(
         return api.getReply()
             .retryWhen { cause, attempt ->
                 var currentDelay = DELAY_FACTOR
-                if (cause.message == "Something went wrong") {
-                    delay(currentDelay)
-                    currentDelay *= DELAY_FACTOR
-                    }
+                delay(currentDelay)
+                currentDelay *= DELAY_FACTOR
                 true
             }
     }
 
     companion object {
-        const val DELAY_FACTOR = 5L
+        const val DELAY_FACTOR = 500L
     }
 }
